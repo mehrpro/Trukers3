@@ -3,25 +3,26 @@ using System.Data.Entity;
 using System.Linq;
 using CLD;
 
+
 namespace CLB
 {
     public class UserModule : IUserModule
     {
-        private readonly TruckersEntities _db;
+        private readonly QMS _db;
 
         public UserModule() : this(null)
         {
-            _db = new TruckersEntities();
+            _db = new QMS();
         }
 
-        public UserModule(TruckersEntities db)
+        public UserModule(QMS db)
         {
             _db = db;
         }
 
-        public List<Users> GetUsers()
+        public List<AppUser> GetUsers()
         {
-            return _db.Users.ToList();
+            return _db.AppUsers.ToList();
         }
 
         public List<UserModel> GetAllUser()
@@ -35,23 +36,23 @@ namespace CLB
                     UserID = item.userID,
                     UserName = item.username,
                     Password = item.password,
-                    Role = item.Roul
+                    Role = item.RoleID
                 });
             }
 
             return list.ToList();
         }
 
-        public Users GetUserById(int userid)
+        public AppUser GetUserById(int userid)
         {
-            return _db.Users.Find(userid);
+            return _db.AppUsers.Find(userid);
         }
 
-        public bool AddUsers(Users user)
+        public bool AddUsers(AppUser user)
         {
             try
             {
-                _db.Users.Add(user);
+                _db.AppUsers.Add(user);
                 _db.SaveChanges();
                 return true;
             }
@@ -61,7 +62,7 @@ namespace CLB
             }
         }
 
-        public bool EditUsers(Users user)
+        public bool EditUsers(AppUser user)
         {
             try
             {
@@ -75,7 +76,7 @@ namespace CLB
             }
         }
 
-        public bool DeleteUsers(Users user)
+        public bool DeleteUsers(AppUser user)
         {
             try
             {
@@ -128,7 +129,7 @@ namespace CLB
             try
             {
                 var usr = GetUserById(userid);
-                usr.Roul = role;
+                usr.RoleID = role;
                 _db.SaveChanges();
                 return true;
             }
@@ -140,7 +141,7 @@ namespace CLB
 
         public bool LoginUser(string username, string password)
         {
-            var usr = _db.Users.SingleOrDefault(x => x.username == username);
+            var usr = _db.AppUsers.SingleOrDefault(x => x.username == username);
             return usr != null && usr.password == password;
         }
 

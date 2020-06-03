@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CLB;
 using CLD;
@@ -14,7 +7,7 @@ namespace Trukers3
 {
     public partial class FrmLogin : Form
     {
-        TruckersEntities db = new TruckersEntities();
+        QMS db = new QMS();
         private IUserModule _userModule;
         public FrmLogin()
         {
@@ -31,6 +24,7 @@ namespace Trukers3
         {
             if (_userModule.LoginUser(txtUserName.Text,txtPassword.Text.Trim()))
             {
+                PublicVar.LoginTest = true;
                 Close();
             }
             else

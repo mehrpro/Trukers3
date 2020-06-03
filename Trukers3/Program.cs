@@ -17,6 +17,11 @@ namespace Trukers3
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmLogin());
+            if (PublicVar.LoginTest)
+            {
+                var frm = new FrmMain();
+                frm.Show();
+            }
         
         }
     }
