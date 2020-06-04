@@ -52,10 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelView\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IUserModule.cs" />
-    <Compile Include="Repository\UserModule.cs" />
+    <Compile Include="Repository\IExistenceBaseRepository.cs" />
+    <Compile Include="Repository\IExistenceGroupRepository.cs" />
+    <Compile Include="Repository\IGroupPropertyRepository.cs" />
+    <Compile Include="ServiceRepository\ExistenceBaseRepository.cs" />
+    <Compile Include="ServiceRepository\ExistenceGroupRepository.cs" />
+    <Compile Include="ServiceRepository\GroupsPropertiesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CLD\CLD.csproj">
@@ -67,6 +70,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
